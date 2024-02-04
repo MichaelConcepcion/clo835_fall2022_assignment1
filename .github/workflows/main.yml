@@ -20,10 +20,6 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v2
       
-    - name: Set timezone to Toronto
-      run: |
-        sudo ln -fs /usr/share/zoneinfo/America/Toronto /etc/localtime
-        echo "Current time: $(date)"
         
     - name: Login to Amazon ECR
       id: login-ecr
@@ -41,7 +37,7 @@ jobs:
         #IMAGE_TAG: v0.2
       run: |
         # Generate IMAGE_TAG using current date and time
-        IMAGE_TAG=mysql-$(date +"%Y%m%d%H%M%S")
+        IMAGE_TAG=mysql-$(date +"%Y-%m-%d-%H%M%S")
         echo "IMAGE_TAG: $IMAGE_TAG"
         
 
@@ -63,7 +59,7 @@ jobs:
         #IMAGE_TAG: v0.2
       run: |
         # Generate IMAGE_TAG using current date and time
-        IMAGE_TAG=WebAPP-$(date +"%Y%m%d%H%M%S")
+        IMAGE_TAG=WebAPP-$(date +"%Y-%m-%d-%H%M%S")
         echo "IMAGE_TAG: $IMAGE_TAG"
         
 
